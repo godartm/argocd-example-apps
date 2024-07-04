@@ -1,10 +1,10 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ template "helm-guestbook.fullname" . }}
+  name: {{ include "helm-guestbook.fullname" . }}
   labels:
-    app: {{ template "helm-guestbook.name" . }}
-    chart: {{ template "helm-guestbook.chart" . }}
+    app: {{ include "helm-guestbook.name" . }}
+    chart: {{ include "helm-guestbook.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
   annotations:
@@ -20,7 +20,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: {{ template "helm-guestbook.fullname" . }}
+                name: {{ include "helm-guestbook.fullname" . }}
                 port:
                   number: {{ .Values.service.port }}
   tls:
