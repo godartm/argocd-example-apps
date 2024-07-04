@@ -16,17 +16,19 @@ service:
   port: 80
 
 ingress:
-  enabled: false
+  enabled: true
   annotations: {}
-    # kubernetes.io/ingress.class: nginx
+   kubernetes.io/ingress.class: alb
+   alb.ingress.kubernetes.io/scheme : internet-facing
+   cert-manager.io/cluster-issuer : letsencrypt-staging
     # kubernetes.io/tls-acme: "true"
   path: /
   hosts:
-    - chart-example.local
+    - test.godartm.fr
   tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
+    - secretName: chart
+      hosts:
+        - test.godartm.fr
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
