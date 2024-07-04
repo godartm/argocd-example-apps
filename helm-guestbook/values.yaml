@@ -12,10 +12,8 @@ image:
 containerPort: 80
 
 service:
-  type: ClusterIP
+  type: ClusterIP  # ClusterIP for internal communication, ALB will handle external traffic
   port: 80
-  annotations:
-    service.beta.kubernetes.io/aws-load-balancer-type: "external"
 
 ingress:
   enabled: true
@@ -23,6 +21,7 @@ ingress:
     kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+    alb.ingress.kubernetes.io/target-type: ip
     cert-manager.io/cluster-issuer: letsencrypt-staging
     # kubernetes.io/tls-acme: "true"
   path: /
