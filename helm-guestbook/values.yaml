@@ -17,15 +17,15 @@ service:
 
 ingress:
   enabled: true
-  annotations: {}
-   kubernetes.io/ingress.class: alb
-   alb.ingress.kubernetes.io/scheme : internet-facing
-   cert-manager.io/cluster-issuer : letsencrypt-staging
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    cert-manager.io/cluster-issuer: letsencrypt-staging
     # kubernetes.io/tls-acme: "true"
   path: /
   hosts:
     - test.godartm.fr
-  tls: []
+  tls:
     - secretName: chart
       hosts:
         - test.godartm.fr
